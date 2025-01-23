@@ -20,7 +20,7 @@ class Player {
 
 
     constructor (data) {
-        Player.allPlayers.push(this);
+        Player.allPlayers.unshift(this);
 
 
         this.name = data.name;
@@ -37,7 +37,7 @@ class Player {
             }
         }
 
-        let stringName = `${fist} ${middle} ${last}`;
+        let stringName = `${first} ${middle} ${last}`;
 
 
         this.html = document.createElement("div");
@@ -58,4 +58,32 @@ class Player {
         this.wins++;
         this.html.querySelector(".wins").textContent = this.wins;
     }
+}
+
+
+
+let db = [
+    {
+      "name": {"first": "Kristoffer", "middle": "Gustav", "last": "Johansson"},
+      "color": "SkyBlue"
+    },
+    {
+      "name": {"first": "Parvaneh", "middle": "Shirin", "last": "Farahani"},
+      "color": "Crimson"
+    },
+    {
+      "name": {"first": "Anamarija", "middle": "Ivana", "last": "Kovačević"},
+      "color": "MediumSeaGreen"
+    },
+    {
+      "name": {"first": "Abdulrahman", "middle": "Mohammed", "last": "Al-Masri"},
+      "color": "DarkOrange"
+    }
+];
+
+for (let x of db) {
+    new Player(x);
+    document.body.appendChild(Player.allPlayers[0].html);
+
+    
 }
