@@ -17,6 +17,10 @@ class Lineup {
         let match = document.createElement("button");
         match.textContent = "Natch!";
         parent.appendChild(match);
+
+        for (let player of players) {
+            Lineup.renderPlayer("lineup", player);
+        }
     }
 
     static renderPlayer (where, player) {
@@ -29,7 +33,8 @@ class Lineup {
 
     static newPair () {
         let players = player.twoRandomPlayers();
-        this.renderPlayer("match", players[0].html);
-        this.renderPlayer("match", players[1].html);
+        Lineup.renderPlayer("match", players[0]);
+        Lineup.renderPlayer("match", players[1]);
+        Lineup.matchPlayers = players;
     }
 }
