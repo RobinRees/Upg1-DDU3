@@ -32,9 +32,23 @@ class Lineup {
     }
 
     static newPair () {
-        let players = player.twoRandomPlayers();
+
+        if (Lineup.matchPlayers.length > 0) {
+            Lineup.renderPlayer("lineup", Lineup.matchPlayers[0]);
+            Lineup.renderPlayer("lineup", Lineup.matchplayers[1])
+        }
+
+        let players = Player.twoRandomPlayers();
+
         Lineup.renderPlayer("match", players[0]);
         Lineup.renderPlayer("match", players[1]);
         Lineup.matchPlayers = players;
+    }
+
+    static match () {
+        let p1Choice = Lineup.matchPlayers[0].go();
+        let p2Choice = Lineup.matchPlayers[1].go();
+
+
     }
 }
