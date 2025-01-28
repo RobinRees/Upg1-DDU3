@@ -24,4 +24,4 @@ for (let x of db) {
     
 }
 
-Lineup.init(document.querySelector("main", Player.allPlayers))
+Lineup.init(document.querySelector("main"), Player.allPlayers);
