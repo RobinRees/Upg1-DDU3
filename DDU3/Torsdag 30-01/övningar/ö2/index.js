@@ -18,3 +18,28 @@ function amountOfPurchases (name) {
 function heaviestPurchase () {
 
 }
+
+function nShops (name) {
+    return Shops.filter(shop => shop.owner == name).length;
+}
+
+
+function nItems (name) {
+    //Get all shops of this person
+    let shops = Shops.filter(shop => shop.owner == name);
+    //transform into shopIds
+    let shopIds = shops.map(shop => shop.id);
+
+    //Find all purchases made in those shopIds
+    let purchases = Purchases.filter(callback);
+    function callback (purchase) {
+        return shopIds.includes(purchase.shopId);
+    }
+
+    let nItems = 0;
+    for (let purchase of purchases) {
+        nItems += purchase.itemIds.length;
+
+    }
+    return nItems;
+}
