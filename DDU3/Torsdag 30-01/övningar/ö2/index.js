@@ -43,3 +43,25 @@ function nItems (name) {
     }
     return nItems;
 }
+
+function weight () {
+    for (let purchase of Purchases) {
+        purchase.totalWeight = purchaseWeight(purchase);
+    }
+    let maxWeight = 0;
+    for (let purchase of Purchases) {
+        if (purchase.totalWeight > maxWeight) {
+            maxWeight = purchase.totalWeight;
+        }
+    }
+    return maxWeight;
+}
+
+function purchaseWeight (purchase) {
+    let weight = 0;
+    for (let itemId of purchase.itemId) {
+        let item = items.find(item => item.id == itemId);
+        weight += item.weight;
+    }
+    return weight;
+}
