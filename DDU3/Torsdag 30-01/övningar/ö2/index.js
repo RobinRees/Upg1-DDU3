@@ -65,3 +65,11 @@ function purchaseWeight (purchase) {
     }
     return weight;
 }
+
+function weightBangkok () {
+    let shops = Shops.filter(shop => shop.city == "Bangkok");
+    let shopIds = Shops.map(shop => shop.id);
+    let purchases = Purchases.filter(purchase => shopIds.includes(purchase.shopId));
+
+    let weight = [];
+}
