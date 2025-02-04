@@ -12,19 +12,18 @@ class Person {
         }
     };
 
-
-    writeName () {
-        return `${this.name.first} ${this.name.last}`
+    writeName (parent) {
+        const p = document.createElement("p");
+        p.textContent = this.name.first + " " + this.name.last;
+        parent.appendChild(p);
+        
     }
 
-    writeAdress () {
-        return `${this.adress.postcode} ${this.adress.street} ${this.adress.number} ${this.adress.city}`
-    }
 }
 
 let peopleIndex = [
     {
-        name: { first: "Janis", last: "Joplin "},
+        name: { first: "Janis", last: "Joplin"},
         adress:  { postcode: 21655, street: "Bergsgatan", number: 42, city: "malmö"}
     },
     {
@@ -37,5 +36,6 @@ let peopleIndex = [
 const person1 = new Person(peopleIndex[0]);
 const person2 = new Person(peopleIndex[1]);
 
-console.log(`${person1.writeName()} (${person1.writeAdress()})`);
-console.log(`${person2.writeName()} (${person2.writeAdress()})`);
+const mainElement = document.querySelector("main");
+person1.writeName(mainElement)
+person2.writeName(mainElement)
