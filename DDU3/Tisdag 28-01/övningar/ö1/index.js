@@ -20,3 +20,4 @@ console.log(i1.p2);
 
 // Vad kommer att loggas på konsolen?
 
+// 0, 13. 13
