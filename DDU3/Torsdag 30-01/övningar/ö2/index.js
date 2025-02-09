@@ -1,75 +1,84 @@
-function findAmountOfShops (name) {
-    let filteredArray = Shops.filter(x => x.owner == name)
+function countShopsByOwner(ownerName) {
+    return Shops.filter(shop => shop.owner === ownerName).length;
+};
 
-    return filteredArray.length;
-}
+function countItemsSoldByOwner(ownerName) {
+    const ownedShops = Shops.filter(shop => shop.owner === ownerName);
+    console.log("Steg 1 - Ägda shops", ownedShops);
 
-function amountOfPurchases (name) {
-    let totalPurchases = 0;
-    let filteredShops = Shops.filter(x => x.owner == name);
-    for (let shop of filteredShops) {
-        for (let purchase of Purchases) {
-            if (shop.id == purchase.shopId) totalPurchases += purchase.itemIds.length
-        }
+
+    const ownedShopIds = ownedShops.map(shop => shop.id);
+    console.log("Steg 2 - Ägda Shop IDs", ownedShopIds);
+
+    const relevantPurchases = Purchases.filter(purchase => ownedShopIds.includes(purchase.shopId));
+    console.log("Steg 3 - Relevanta purchases", relevantPurchases);
+
+    let totalItemsSold = 0;
+    for (let i = 0; i < relevantPurchases.length; i++) {
+        totalItemsSold += relevantPurchases[i].itemIds.length;
     }
-    return totalPurchases
+    console.log("Steg 4 - Totalt antal sålda varor", totalItemsSold);
+    return totalItemsSold;
 }
 
-function heaviestPurchase () {
-
-}
-
-function nShops (name) {
-    return Shops.filter(shop => shop.owner == name).length;
-}
-
-
-function nItems (name) {
-    //Get all shops of this person
-    let shops = Shops.filter(shop => shop.owner == name);
-    //transform into shopIds
-    let shopIds = shops.map(shop => shop.id);
-
-    //Find all purchases made in those shopIds
-    let purchases = Purchases.filter(callback);
-    function callback (purchase) {
-        return shopIds.includes(purchase.shopId);
-    }
-
-    let nItems = 0;
-    for (let purchase of purchases) {
-        nItems += purchase.itemIds.length;
-
-    }
-    return nItems;
-}
-
-function weight () {
-    for (let purchase of Purchases) {
-        purchase.totalWeight = purchaseWeight(purchase);
-    }
+function heaviestPurchaseWeight() {
     let maxWeight = 0;
-    for (let purchase of Purchases) {
-        if (purchase.totalWeight > maxWeight) {
-            maxWeight = purchase.totalWeight;
+
+    for (let i = 0; i < Purchases.length; i++) {
+        let currentWeight = 0;
+
+        for (let j = 0; j < Purchase[i].itemIds.length; j++) {
+            let itemId = Purchases[i].itemIds[j];
+
+            let item = Items.find(it => it.id === itemId);
+            if (item) {
+                currentWeight += item.weight;
+            }
+        }
+
+        if (currentWeight > maxWeight) {
+            maxWeight = currentWeight;
         }
     }
     return maxWeight;
 }
 
-function purchaseWeight (purchase) {
-    let weight = 0;
-    for (let itemId of purchase.itemId) {
-        let item = items.find(item => item.id == itemId);
-        weight += item.weight;
+//Koda en funktion som returnerar den totala vikten av köpet (purchase) som vägde tyngst och som gjordes i Bangkok.
+
+function heaviesPurchaseInBangkok() {
+    const bangkokShopIds = [];
+    for (let i = 0; i < Shops.length; i++) {
+        if (Shops[i].city === "Bangkok") {
+            bangkokShopIds.push(Shops[i].id);
+        }
     }
-    return weight;
-}
 
-function weightBangkok () {
-    let shops = Shops.filter(shop => shop.city == "Bangkok");
-    let shopIds = Shops.map(shop => shop.id);
-    let purchases = Purchases.filter(purchase => shopIds.includes(purchase.shopId));
+    let maxWeight = 0; 
 
-    let weight = [];
+    for (let i = 0; i < Purchases.length; i++) {
+        if (bangkokShopIds.includes(Purchases[i].shopId)) {
+            let currentWeight = 0; 
+
+
+            for (let j = 0; j < Purchases[i].itemIds.length; j++) {
+                let itemId = Purchases[i].itemIds[j];
+
+                for (let k = 0; k < Items.length; k++) {
+                    if (Items[k].id === itemId) {
+                        currentWeight += Items[k].weight;
+                        break
+                    }
+                }
+            }
+
+            if (currentWeight > maxWeight) {
+                maxWeight = currentWeight;
+            }
+        }
+        
+
+
+    }
+
+    return maxWeight;
 }

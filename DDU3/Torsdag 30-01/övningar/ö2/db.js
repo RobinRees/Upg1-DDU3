@@ -46,3 +46,5 @@ const Purchases = [
   { id: 802, itemIds: [42, 145, 88], shopId: 404, customerId: 25, date: { day: 12, month: 9, year: 2024 } },
   { id: 913, itemIds: [99, 66, 44], shopId: 145, customerId: 67, date: { day: 18, month: 9, year: 2024 } }
 ];
+
+//Koda en funktion som tar emot namnet på en person och returnerar antalet Shops som ägs av den personen.
