@@ -1,4 +1,42 @@
 class Dog {
+
+  static breeds (region) {
+    let breedsInRegion = [];
+    for (let dog of Dog.all) {
+      let owner = Owner.all.find(owner => owner.dogIds.includes(dog.id));
+      if (region === owner.region) {
+        if (!breedsInRegion.includes(dog.breed)) {
+          breedsInRegion.push(dog.breed);
+        }
+      }
+      let data = [];
+      for (breed of breedsInRegion) {
+        let nDogsAlive = Dog.all.filter(dog => {
+          let breedOk = dog.breed === breed;
+          let owner = Owner.all.find(owner => owner.dogIds.includes(dog.id));
+          let regionOk = owner.region === region;
+          let aliveOk = dog.died === 0;
+          return breedOk && regionOk && aliveOk;
+        }).length;
+
+        for (breed of breedsInRegion) {
+          let nDogsTotal = Dog.all.filter(dog => {
+            let breedOk = dog.breed === breed;
+            let owner = Owner.all.find(owner => owner.dogIds.includes(dog.id));
+            let regionOk = owner.region === region;
+            return breedOk && regionOk;
+          }).length;        
+
+        data.push({
+          breed: breed,
+          nDogsAlive: nDogsAlive,
+          nDOgsTotal: nDogsTotal,
+        })
+      }
+    }
+  }
+
+
   static all = []
   constructor(id, weight, born, died, breed, kennelId) {
     this.constructor.all.push(this)
