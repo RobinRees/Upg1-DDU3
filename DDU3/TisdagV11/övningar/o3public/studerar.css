@@ -1,0 +1,92 @@
+body {
+  margin: 0px;
+  background-color: beige;
+  width: 100vw;
+  height: 100vh;
+}
+
+
+
+#wrapper {
+  max-width: 1000px;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+p {
+  font-size: 17px;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+#navigation {
+  display: flex;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px black solid;
+  border-radius: 10px 10px 0px 0px;
+  background-color: #8e9dbc;
+  justify-content: center;
+}
+
+#middleButton {
+  padding: 0px 20px;
+  margin: 0px 20px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.navLink a {
+  color: white;
+  text-decoration: none;
+  font-size: 30px;
+}
+
+.navLink a:hover {
+  color: antiquewhite;
+  text-decoration: underline;
+}
+
+footer {
+  background-color: #8e9dbc;
+  border-top: 1px black solid;
+  width: 100%;
+  height: 50px;
+  border-radius: 0px 0px 10px 10px;
+  text-align: center;
+  padding: 10px 0px;
+}
+
+#content {
+  display: flex;
+  gap: 20px;
+}
+
+.fraga {
+  flex-basis: 0;
+  flex-grow: 1;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  background-color: white;
+}
+
+h2 {
+  text-align: center;
+}
+
+#bildStuderar {
+  background-image: url(images/imgStuderar.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 300px;
+}
