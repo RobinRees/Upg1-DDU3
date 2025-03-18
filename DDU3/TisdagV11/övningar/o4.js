@@ -1,13 +1,16 @@
 const filename = "dogs.csv";
-const dogs = ["Arya", "Ajla", "Findus"];
-let message = "";
 
 
+const command = Deno.args[0];
+const newDog = Deno.args[1];
 
-const options = { append: true };
 
-for (const dog of dogs) {
-    message += `${dog}\n`;
+if (command === "add" && newDog) {
+    const message = `${newDog}\n`;
+
+    await Deno.writeTextFileSync(filename, message, { append: true});
+    console.log(`${newDog} har lagts till i ${filename}`);
+
+} else {
+    console.log("Använd: deno --allow-write 04.js add <namn>")
 }
-
-Deno.writeTextFileSync(filename, message, options);
