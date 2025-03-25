@@ -16,7 +16,9 @@ async function handler (request) {
             const errorMsg = { error: "Unsupported Media Type, JSON was expected" };
             const errorAsJSON = JSON.stringify(errorMsg)
             const failMsg = {
-                status: 415
+                status: 415,
+                headers: { "Content-Type" : "text/html"}
+
             }
             
             return new Response(errorAsJSON, failMsg);
@@ -29,5 +31,5 @@ async function handler (request) {
     return new Response(data, options);
 }
 
-console.log("Servern körs på http://localhost:3000");
+
 serve(handler);
