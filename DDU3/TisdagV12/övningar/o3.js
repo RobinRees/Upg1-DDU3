@@ -13,7 +13,7 @@ async function handler (request) {
 
     const url = new URL(request.url);
 
-    if (match) {
+    /*if (match) {
         const name = match.pathname.groups.name;
         const dog =  dataToJS.find(dog => dog.name.toLowerCase() === name.toLowerCase());
 
@@ -22,6 +22,35 @@ async function handler (request) {
         } else {
             return new Response("Dog not found", { status : 404});
         }
+    }*/
+
+    if (request.method === "PATCH") {
+        if (match) {
+            const name = match.pathname.groups.name;
+            const dog = dataToJS.find(dog => dog.name.toLowerCase() === name.toLowerCase());
+
+            if (dog) {
+                console.log(dog);
+                const newInfo = await request.json();
+
+
+                if ("weight" in newInfo) {
+                    dog.weight = newInfo.weight;
+                }
+
+                if ("age" in newInfo) {
+                    dog.age = newInfo.age;
+                }
+
+                if ("favorite_treats" in newInfo) {
+                    dog.favorite_treats = newInfo.favorite_treats;
+                }
+                console.log(newInfo);
+                const JSONDogs = JSON.stringify(dataToJS, null, 2);
+                Deno.writeTextFileSync(filename, JSONDogs)
+                return new Response(JSONDogs);
+            }
+        } 
     }
 
     if (request.method === "GET") {
@@ -87,6 +116,24 @@ async function handler (request) {
     }
 
     if (request.method === "DELETE") {
+
+        if (match) {
+            const name = match.pathname.groups.name;
+            console.log(match)
+            console.log(match.pathname.groups.name)
+            const dog = dataToJS.find(dog => dog.name.toLowerCase() == name.toLowerCase());
+
+            if (dog) {
+                const filteredDogs = dataToJS.filter(dog => dog.name.toLowerCase() != name.toLowerCase());
+                const newJsonDogs = JSON.stringify(filteredDogs, null, 2);
+                console.log(newJsonDogs);
+                Deno.writeTextFileSync(filename, newJsonDogs)
+                return new Response(newJsonDogs)
+            } else {
+                return new Response("Error", { status : 400});
+            }
+        }
+
         if (contentType === "application/json") {
             const requestDataDelete = await request.json();
 

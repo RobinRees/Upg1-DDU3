@@ -15,24 +15,15 @@ async function handler (request) {
         if (url.pathname == "/dogs") {
 
 
-            if (url.searchParams.get("age") == 7) {
-                const filterDogsOfAge = dataToJS.filter(dog => dog.age == 7);
-                const filteredDogsToJSON = JSON.stringify(filterDogsOfAge, null, 2);
-                let response = new Response(filteredDogsToJSON);
-                return response;
-            }
 
-            if (url.searchParams.get("treat") == "Cheese") {
-                const filterDogsOfTreats = dataToJS.filter(dog => dog.favorite_treats == "Cheese");
-                const filteredDogsToJSON = JSON.stringify(filterDogsOfTreats, null, 2);
-                let response = new Response(filteredDogsToJSON);
-                return response;
-            }
 
             if (url.searchParams.get("age") == 5 && url.searchParams.get("treat") == "Cheese") {
                 const filterDogsOfAges = dataToJS.filter(dog => dog.age == 5);
-                const finterDogsOfCheese = filterDogsOfAges.filter(dog => dog.favorite_treats == "Cheese");
-                const DogsAndCheeseToJSON = JSON.stringify(finterDogsOfCheese);
+                console.log(filterDogsOfAges)
+                const filterAgeAndCheese = filterDogsOfAges.filter(dog => dog.favorite_treats == "Cheese");
+                console.log(filterAgeAndCheese)
+
+                const DogsAndCheeseToJSON = JSON.stringify(filterAgeAndCheese, null, 2);
 
                 console.log(DogsAndCheeseToJSON);
                 let response = new Response(DogsAndCheeseToJSON);
