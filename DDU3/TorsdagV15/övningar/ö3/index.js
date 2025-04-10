@@ -1,6 +1,7 @@
 const registerButton = document.getElementById("registerButton")
 const registerInputName = document.getElementById("registerInputName")
 const registerInputPw = document.getElementById("registerInputPw")
+const registerInputPwRepeat = document.getElementById("registerInputPwRepeat")
 
 const loginButton = document.getElementById("loginButton")
 const loginInputName = document.getElementById("loginInputName")
@@ -11,7 +12,7 @@ const responseMessage = document.getElementById("textResponse")
 registerButton.addEventListener("click", async function(){
 
 
-    if (registerInputName.value != "" && registerInputPw.value != ""){
+    if (registerInputName.value != "" && registerInputPw.value != "" && registerInputPw.value === registerInputPwRepeat.value){
         const request = new Request("https://maumt.reipino.com/du3/servers/accounts/manage/", {
             method: "POST",
             headers: {
@@ -28,7 +29,7 @@ registerButton.addEventListener("click", async function(){
         })();
     
     
-        console.log(accounts)
+        responseMessage.innerHTML = "Was registerd"
 
 
     } else {
