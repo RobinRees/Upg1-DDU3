@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        const request = new Request("https://maumt.reipino.com/du3/servers/accounts/manage/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({name: "WDU2", password: "WDU"})
+        });
+
+        (async function () {
+            await fetch(request);
+            let response = await fetch("https://maumt.reipino.com/du3/servers/accounts/");
+            let accounts = await response.json();
+            console.log(accounts);
+        })();
+
+    </script>
+</body>
+</html>

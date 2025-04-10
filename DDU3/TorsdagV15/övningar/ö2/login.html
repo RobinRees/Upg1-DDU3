@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+            const request = new Request("https://maumt.reipino.com/du3/servers/accounts/login/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({name: "WDU2", password: "WDU"})
+        });        
+
+
+        const responsePromise = fetch(request);
+        responsePromise.then(response => {
+            if (response.status === 200) {
+                console.log("OK")
+            } else {
+                console.log("NOT OK")
+            }
+
+        })
+
+    </script>
+</body>
+</html>
