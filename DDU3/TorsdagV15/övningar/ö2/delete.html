@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+            const request = new Request("https://maumt.reipino.com/du3/servers/accounts/login/", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({name: "WDU2", password: "WDU"})
+        });
+
+        (async function() {
+            const response = await fetch(request);
+            if (response.ok) {
+                console.log("account deleted");
+
+            } else {
+                console.log("not deleted")
+            }
+        })
+
+    </script>
+</body>
+</html>
