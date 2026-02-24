@@ -29,12 +29,24 @@ Vi vill också veta om födelseåret spelar roll för meritvärdet. Koda en meto
   y2000: {n: 46, average: 16.5},
   etc...
 }
-Där egenskapen representerar födelseåret och objektet {n, average} inkluderar data om studenterna som föddes det året. n är antalet studenter och average genomsnittet av deras meeritvärde.
-Notera att vi inte vet när den äldste/yngste studenten föddes... vi vet inget i förväg vad gäller födelseåren, infon finns i studenternas birthdate-egenskapen.
+Där egenskapen representerar födelseåret och objektet {n, average} inkluderar data om studenterna som föddes det året. 
+n är antalet studenter och average genomsnittet av deras meeritvärde.
+Notera att vi inte vet när den äldste/yngste studenten föddes... 
+vi vet inget i förväg vad gäller födelseåren, infon finns i studenternas birthdate-egenskapen.
 
+*/
+
+
+
+
+
+/*
 Koda en metod som tar emot en "level" och returnerar den genomsnittliga åldern av studenterna som läser på den nivån (level).
 
 Koda en metod som returnerar programmet där studenterna har det högsta genomsnittliga meritvärde.
+
+
+let array = [this.history[this.history.length -3,], this.history[this.history.length -2]]
 
 
 */
@@ -49,7 +61,7 @@ class Register {
     Register.programs.push(new Program(data));
   }
 
-  let 
+
 
 
 }
@@ -78,6 +90,83 @@ class Student {
     return Register.students.filter(students => students.firstName === name); //Upg 3
   }
 
+    studentsOnSpecificLevel(data) { //upg 4
+    const array = Register.students.filter(student => student.program.level === data);
+    return array.length;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+ createListofYears () {
+  let array = [];
+  let year = Infinity;
+  
+  for (let student of Register.students) {
+    let studentBirthDate = parseInt(student.birthDate.split("-")[0]);
+    if (!array.includes(studentBirthDate)) {
+      array.push(studentBirthDate);
+    } else {
+      return array;
+    }
+  }
+
+}
+
+
+  findStudentsByYear (year) { //Merit istället, + counter. Objekt
+    let array = []; 
+    for (let student of Register.students) {
+      if (parseInt(student.birthDate.split("-")[0]) === year) {
+        array.push(student.merit);
+      }
+    }
+  }
+
+  finallyfinalMethod () {
+    let yearArray = createListofYears();
+
+    for (let years of yearArray) {
+      findStudentsByYear(years)
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
@@ -94,10 +183,7 @@ class Program {
   }
 
 
-  studentsOnSpecificLevel(data) { //upg 4
-    const array = Register.students.filter(student => student.program.level === data);
-    return array.length;
-  }
+
 
   bestStudent () { // upg 5
     let array = Register.students.filter(student => student.program === this);
@@ -105,11 +191,11 @@ class Program {
     let highest = null; 
 
     for (let student of array) {
-      if (highest === null ||student.merit > highest.merit) {
+      if (highest === null || student.merit > highest.merit) {
         highest = student;
       }
     }
-    return highest
+    return highest;
   }
 
   returnAvrage() {
