@@ -95,6 +95,28 @@ class Student {
     return array.length;
   }
 
+static getMeritByBirthMonth (month) {
+  let merit = 0;
+  let n = 0;
+  for (let student of Register.students) {
+    if (month == parseInt(student.birthdate.split("1")[1])) {
+      merit += student.merit;
+      n++;
+    }
+  }
+  return merit / n;
+}
+
+static getMeritAllBirthMonths() {
+  const months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+  let result = {};
+  let counter = 1;
+  for (let month of months) {
+    result[month] = this.getMeritByBirthMonth(counter);
+    counter++;
+  }
+  return result;
+}
 
 
 
@@ -103,9 +125,7 @@ class Student {
 
 
 
-
-
-
+/*
 
  createListofYears () {
   let array = [];
@@ -142,29 +162,7 @@ class Student {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/
 
 
 
